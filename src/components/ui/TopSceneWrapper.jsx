@@ -1,10 +1,13 @@
 import SlotBox from '../slots/SlotBox';
 
 export default function TopSceneWrapper({ children }) {
+  const debugEnabled = process.env.NEXT_PUBLIC_SLOT_DEBUG === 'true';
+
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative isolate">
       <div
-        className="absolute inset-0"
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
         style={{
           backgroundImage: 'url("/images/top-bg.jpg")',
           backgroundSize: 'cover',
@@ -13,19 +16,27 @@ export default function TopSceneWrapper({ children }) {
         }}
       />
 
-      <div className="pointer-events-none absolute inset-0 z-[1]">
-        <SlotBox className="h-full w-full rounded-none" kind="bg" slotKey="top-bg" fileHint="top-bg.jpg" />
-      </div>
-
       <div
-        className="absolute inset-0 z-[2]"
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
         style={{
-          background:
+          backgroundImage:
             'linear-gradient(120deg, rgba(111,168,161,0.22) 0%, rgba(191,166,214,0.18) 42%, rgba(242,198,180,0.12) 100%), linear-gradient(180deg, rgba(246,244,240,0.92) 0%, rgba(246,244,240,0.68) 60%, rgba(246,244,240,0.92) 100%)',
         }}
       />
 
-      <div className="relative z-10">{children}</div>
+      <SlotBox kind="bg" slotKey="top-bg" fileHint="top-bg.jpg" className="pointer-events-none absolute inset-0 -z-10 rounded-none" />
+
+      {debugEnabled && (
+        <div
+          className="pointer-events-none absolute right-3 top-3 z-20 rounded-md px-2 py-1 text-[11px] font-medium"
+          style={{ background: 'rgba(255,255,255,0.82)', border: '1px solid rgba(17,24,39,0.14)' }}
+        >
+          TOP BG: /images/top-bg.jpg
+        </div>
+      )}
+
+      <div className="relative">{children}</div>
     </div>
   );
 }
