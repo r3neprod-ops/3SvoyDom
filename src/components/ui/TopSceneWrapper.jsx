@@ -4,7 +4,7 @@ export default function TopSceneWrapper({ children }) {
   const debugEnabled = process.env.NEXT_PUBLIC_SLOT_DEBUG === 'true';
 
   return (
-    <div className="relative isolate">
+    <section className="relative pb-8 pt-24">
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10"
@@ -25,18 +25,19 @@ export default function TopSceneWrapper({ children }) {
         }}
       />
 
-      <SlotBox kind="bg" slotKey="top-bg" fileHint="top-bg.jpg" className="pointer-events-none absolute inset-0 -z-10 rounded-none" />
-
       {debugEnabled && (
-        <div
-          className="pointer-events-none absolute right-3 top-3 z-20 rounded-md px-2 py-1 text-[11px] font-medium"
-          style={{ background: 'rgba(255,255,255,0.82)', border: '1px solid rgba(17,24,39,0.14)' }}
-        >
-          TOP BG: /images/top-bg.jpg
-        </div>
+        <>
+          <SlotBox kind="bg" slotKey="top-bg" fileHint="top-bg.jpg" className="pointer-events-none absolute inset-0 -z-10 rounded-none" />
+          <div
+            className="pointer-events-none absolute right-3 top-3 z-20 rounded-md px-2 py-1 text-[11px] font-medium"
+            style={{ background: 'rgba(255,255,255,0.82)', border: '1px solid rgba(17,24,39,0.14)' }}
+          >
+            TOP BG: /images/top-bg.jpg
+          </div>
+        </>
       )}
 
       <div className="relative">{children}</div>
-    </div>
+    </section>
   );
 }

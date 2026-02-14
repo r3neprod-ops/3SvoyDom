@@ -110,6 +110,8 @@ function Header({ onLeadOpen }) {
 }
 
 function Hero({ onLeadOpen }) {
+  const debugEnabled = process.env.NEXT_PUBLIC_SLOT_DEBUG === 'true';
+
   return (
     <Section id="about" className="pt-[104px]">
       <Container className="max-w-[1200px]">
@@ -122,6 +124,17 @@ function Hero({ onLeadOpen }) {
               <Button onClick={onLeadOpen}>Подобрать варианты</Button>
               <Button as="a" href={brand.telegram} target="_blank" rel="noreferrer" variant="ghost">Написать в Telegram</Button>
             </div>
+            {debugEnabled && (
+              <a
+                className="mt-4 inline-flex rounded-lg border border-[var(--borderStrong)] bg-white/80 px-3 py-1.5 text-xs font-medium text-[var(--text)]"
+                href="/images/top-bg.jpg"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Проверка фона
+              </a>
+            )}
+
             <div className="mt-7 grid gap-3 sm:grid-cols-3">
               {[
                 { label: 'Telegram', href: brand.telegram },
