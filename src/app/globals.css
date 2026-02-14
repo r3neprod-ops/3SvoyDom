@@ -3,13 +3,69 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  --bg: #F6F4F0;
+  --surface: #FFFFFF;
+  --surface2: rgba(255, 255, 255, 0.72);
+  --text: #111827;
+  --muted: rgba(17, 24, 39, 0.68);
+  --border: rgba(17, 24, 39, 0.10);
+  --borderStrong: rgba(17, 24, 39, 0.16);
+  --primary: #6FA8A1;
+  --primaryHover: #5C938D;
+  --accent2: #BFA6D6;
+  --accent3: #F2C6B4;
+  --ring: rgba(111, 168, 161, 0.32);
+  --shadow: 0 18px 50px rgba(17, 24, 39, 0.10);
+  --shadowHover: 0 22px 70px rgba(17, 24, 39, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-bg text-text antialiased;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+  font-feature-settings: 'ss01' on, 'cv01' on;
 }
 
-a {
-  @apply transition;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.in-view {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.hover-lift {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadowHover);
+}
+
+.glass-surface {
+  background: var(--surface2);
+  backdrop-filter: blur(8px);
 }
