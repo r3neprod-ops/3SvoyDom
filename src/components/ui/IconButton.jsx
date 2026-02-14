@@ -1,9 +1,11 @@
-import Button from './Button';
-
-export default function IconButton({ icon, label, className = '', ...props }) {
+export default function IconButton({ icon, children, className = '', ...props }) {
   return (
-    <Button aria-label={label} className={className} size="icon" variant="icon" {...props}>
+    <button
+      className={`inline-flex items-center gap-2 rounded-lg border border-soft bg-surface px-4 py-2 text-sm font-medium text-text hover:border-primary ${className}`}
+      {...props}
+    >
       <span aria-hidden>{icon}</span>
-    </Button>
+      {children}
+    </button>
   );
 }
