@@ -136,9 +136,9 @@ function Hero({ onLeadOpen }) {
           </div>
           <div className="relative lg:col-span-5">
             <div className="relative h-[540px] w-full">
-              <SlotBox className="absolute right-0 top-0 h-[240px] w-full max-w-[360px] bg-[var(--surface2)] shadow-soft" kind="image" slotKey="hero-photo-1" />
-              <SlotBox className="absolute left-0 top-[170px] h-[200px] w-full max-w-[360px] bg-[var(--surface2)] shadow-soft" kind="image" slotKey="hero-photo-2" />
-              <SlotBox className="absolute bottom-0 right-6 h-[260px] w-[220px] bg-[var(--surface2)] shadow-soft" kind="mascot" slotKey="mascot-hero" />
+              <SlotBox className="absolute right-0 top-0 h-[240px] w-full max-w-[360px] bg-[var(--surface2)] shadow-soft" kind="image" slotKey="hero-photo-1" fileHint="hero-photo-1.jpg" />
+              <SlotBox className="absolute left-0 top-[170px] h-[200px] w-full max-w-[360px] bg-[var(--surface2)] shadow-soft" kind="image" slotKey="hero-photo-2" fileHint="hero-photo-2.jpg" />
+              <SlotBox className="absolute bottom-0 right-3 h-[220px] w-[180px] bg-[var(--surface2)] shadow-soft md:right-6 md:h-[280px] md:w-[240px]" kind="mascot" slotKey="mascot-hero" fileHint="mascot-hero.png" />
             </div>
           </div>
         </div>
@@ -188,6 +188,14 @@ function Directions() {
     <Section>
       <Container>
         <h2 className="mb-5 text-3xl font-semibold">Направления</h2>
+        <div className="mb-4 flex justify-end">
+          <SlotBox
+            className="h-[180px] w-full bg-[var(--surface2)] md:h-[240px] md:w-[220px]"
+            kind="mascot"
+            slotKey="mascot-tiles"
+            fileHint="mascot-tiles.png"
+          />
+        </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {directions.map((tile, index) => (
             <Card
@@ -195,8 +203,8 @@ function Directions() {
               className={`hover-lift reveal relative min-h-[140px] p-5 ${index < 2 ? 'lg:col-span-2' : ''}`}
               style={{ borderColor: 'var(--borderStrong)' }}
             >
-              {index === 0 && <SlotBox className="mb-3 h-20 w-[120px] bg-[var(--surface2)]" kind="image" slotKey="tile-illustration-1" />}
-              {index === 1 && <SlotBox className="mb-3 h-20 w-[120px] bg-[var(--surface2)]" kind="image" slotKey="tile-illustration-2" />}
+              {index === 0 && <SlotBox className="mb-3 h-20 w-[120px] bg-[var(--surface2)]" kind="image" slotKey="tile-illustration-1" fileHint="tile-illustration-1.jpg" />}
+              {index === 1 && <SlotBox className="mb-3 h-20 w-[120px] bg-[var(--surface2)]" kind="image" slotKey="tile-illustration-2" fileHint="tile-illustration-2.jpg" />}
               <h3 className="text-xl font-semibold">{tile.title}</h3>
               <p className="mt-1 text-sm text-[var(--muted)]">{tile.desc}</p>
               <span className="absolute bottom-4 right-4 text-xl">↗</span>
@@ -221,9 +229,17 @@ function TelegramBanner({ onLeadOpen }) {
           }}
         >
           <h2 className="text-2xl font-semibold">Получите расчёт в Telegram за 10 минут</h2>
-          <div className="flex flex-wrap gap-2">
-            <Button as="a" href={brand.telegram} target="_blank" rel="noreferrer">Telegram</Button>
-            <Button onClick={onLeadOpen} variant="secondary">Подобрать варианты</Button>
+          <div className="flex flex-wrap items-end gap-3">
+            <div className="flex flex-wrap gap-2">
+              <Button as="a" href={brand.telegram} target="_blank" rel="noreferrer">Telegram</Button>
+              <Button onClick={onLeadOpen} variant="secondary">Подобрать варианты</Button>
+            </div>
+            <SlotBox
+              className="h-[180px] w-[160px] bg-[var(--surface2)] md:h-[220px] md:w-[200px]"
+              kind="mascot"
+              slotKey="mascot-cta"
+              fileHint="mascot-cta.png"
+            />
           </div>
         </div>
       </Container>
@@ -269,7 +285,7 @@ function Complexes() {
           <div className="flex gap-4 transition-transform duration-300" style={{ transform: `translateX(-${index * 336}px)` }}>
             {complexes.map((complex) => (
               <Card key={complex.id} className="hover-lift w-[280px] shrink-0 p-4 md:w-[320px]">
-                <SlotBox className="h-[180px] w-full bg-[var(--surface2)]" kind="image" slotKey={`complex-${complex.id}-cover`} />
+                <SlotBox className="h-[180px] w-full bg-[var(--surface2)]" kind="image" slotKey={`complex-${complex.id}-cover`} fileHint={`complex-${complex.id}-cover.jpg`} />
                 <h3 className="mt-3 text-lg font-semibold">{complex.name}</h3>
                 <p className="text-sm text-[var(--muted)]">{complex.location}</p>
                 <p className="mt-2 font-semibold">{complex.priceFrom}</p>
@@ -314,7 +330,7 @@ function Reviews() {
           {reviews.map((review) => (
             <Card key={review.id} className="hover-lift p-5">
               <div className="mb-3 flex items-center gap-3">
-                <SlotBox className="h-12 w-12 rounded-full bg-[var(--surface2)]" kind="avatar" slotKey={`review-${review.id}-avatar`} />
+                <SlotBox className="h-12 w-12 rounded-full bg-[var(--surface2)]" kind="avatar" slotKey={`review-${review.id}-avatar`} fileHint={`review-${review.id}-avatar.jpg`} />
                 <div>
                   <p className="font-semibold">{review.name}</p>
                   <span className="inline-flex rounded-full bg-[rgba(111,168,161,0.2)] px-2.5 py-0.5 text-xs">{review.sourceLabel}</span>
@@ -398,7 +414,7 @@ function Footer() {
           <p className="font-semibold">{brand.name}</p>
           <p className="text-sm text-[var(--muted)]">Ипотечный брокер в Луганске</p>
         </div>
-        <SlotBox className="h-10 w-32 bg-[var(--surface2)]" kind="image" slotKey="footer-logo" />
+        <SlotBox className="h-10 w-32 bg-[var(--surface2)]" kind="image" slotKey="footer-logo" fileHint="footer-logo.png" />
       </Container>
     </footer>
   );
